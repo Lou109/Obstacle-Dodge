@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 272474599}
   m_Layer: 0
   m_Name: Ginny
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1230,7 +1230,7 @@ GameObject:
   - component: {fileID: 914974735}
   m_Layer: 0
   m_Name: Obstacle 3
-  m_TagString: Untagged
+  m_TagString: Dropping Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1468,12 +1468,12 @@ GameObject:
   - component: {fileID: 1282450169}
   - component: {fileID: 1282450173}
   - component: {fileID: 1282450172}
-  - component: {fileID: 1282450171}
-  - component: {fileID: 1282450170}
-  - component: {fileID: 1282450174}
   - component: {fileID: 1282450175}
+  - component: {fileID: 1282450171}
+  - component: {fileID: 1282450176}
+  - component: {fileID: 1282450177}
   m_Layer: 0
-  m_Name: 'Dropper '
+  m_Name: Dropping Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1494,18 +1494,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1693539805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1282450170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282450168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4084107b176bb436c9688a84caad5bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1282450171
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1580,19 +1568,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282450168}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1282450174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282450168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18b1b739ca1c46bba40d4f3eb60e400, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timetoWait: 3
 --- !u!54 &1282450175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1601,9 +1576,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282450168}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1618,8 +1593,33 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &1282450176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282450168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18b1b739ca1c46bba40d4f3eb60e400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timetoWait: 3
+--- !u!114 &1282450177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282450168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4084107b176bb436c9688a84caad5bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1425075968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,14 +1770,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 393473063}
-  - {fileID: 596890785}
-  - {fileID: 559519459}
-  - {fileID: 1425075972}
   - {fileID: 364048691}
   - {fileID: 2046459476}
   - {fileID: 1282450169}
   - {fileID: 914974734}
+  - {fileID: 393473063}
+  - {fileID: 596890785}
+  - {fileID: 559519459}
+  - {fileID: 1425075972}
   - {fileID: 1048854738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2017,8 +2017,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 162283881}
+  - {fileID: 272474596}
+  - {fileID: 1693539805}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 2095969052}
-  - {fileID: 272474596}
-  - {fileID: 1693539805}
