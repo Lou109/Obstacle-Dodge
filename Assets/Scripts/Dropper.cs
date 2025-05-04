@@ -3,6 +3,8 @@ using UnityEngine;
 public class Dropper : MonoBehaviour
 {
 
+    [SerializeField] float timetoWait = 3f;
+
     void Start()
     {
         
@@ -10,6 +12,9 @@ public class Dropper : MonoBehaviour
 
     void Update()
     {
-         Debug.Log(Time.time);
+         if (Time.time > timetoWait)
+         {
+             Debug.Log("Lookout Below!");
+         }
     }
 }
