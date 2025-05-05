@@ -27,7 +27,7 @@ public class FlyAtPlayer : MonoBehaviour
     {   
         if(transform.position == playerPosition)
         {
-           Destroy(gameObject);
+           Destroy(gameObject);  
         }   
     }
 }
