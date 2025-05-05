@@ -6,15 +6,28 @@ public class FlyAtPlayer : MonoBehaviour
     [SerializeField] Transform player;
     Vector3 playerPosition;
    
-
     void Start()
     {
-        playerPosition = player.transform.position;
+        playerPosition = player.transform.position; 
     }
 
     void Update()
     {
-        transform.position = 
+        MoveToPlayer();
+        DestroyWhenReached();  
+    }
+
+    private void MoveToPlayer()
+    {
+        transform.position =
         Vector3.MoveTowards(transform.position, playerPosition, Time.deltaTime * speed);
+    }
+
+    void DestroyWhenReached()
+    {   
+        if(transform.position == playerPosition)
+        {
+           Destroy(gameObject);
+        }   
     }
 }
