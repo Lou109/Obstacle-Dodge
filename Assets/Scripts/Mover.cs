@@ -4,6 +4,7 @@ public class Mover : MonoBehaviour
 {
     
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed;
 
 
     void Start()
@@ -26,9 +27,16 @@ public class Mover : MonoBehaviour
 
     void MovePlayer()
     {
-        float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        float yValue = 0f;
-        float zValue = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-        transform.Translate(xValue, yValue, zValue);
+       float horizontalInput = Input.GetAxis("Horizontal");
+       float verticalInput = Input.GetAxis("Vertical");
+
+       Vector3 movementDirection = new Vector3(horizontalInput, 0 , verticalInput);
+       transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
+
+       if (movementDirection != Vector3.zero)
+       {
+           Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+           transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+       }
     }
 }
