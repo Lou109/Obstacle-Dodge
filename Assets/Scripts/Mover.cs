@@ -5,27 +5,20 @@ public class Mover : MonoBehaviour
     
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 300f;
+    [SerializeField] float jumpSpeed = 10f;
 
     CharacterController characterController;
+    float ySpeed;
 
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        PrintInstruction();
     }
-
-    
+  
     void Update()
     {
         MovePlayer();
-    }
-
-    void PrintInstruction()
-    {
-        Debug.Log("Welcome to the game!");
-        Debug.Log("Move using arrow keys or wasd");
-        Debug.Log("Don't bump into objects");
     }
 
     void MovePlayer()
@@ -37,7 +30,17 @@ public class Mover : MonoBehaviour
        float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;
        movementDirection.Normalize();
 
-       characterController.SimpleMove(movementDirection * magnitude);
+       ySpeed += Physics.gravity.y * Time.deltaTime;
+
+       if (Input.GetButtonDown("Jump"))
+       {
+           ySpeed = jumpSpeed;
+       }
+
+        Vector3 velocity = movementDirection * magnitude;
+        velocity.y = ySpeed;
+
+        characterController.Move(velocity * Time.deltaTime);
 
        if (movementDirection != Vector3.zero)
        {
