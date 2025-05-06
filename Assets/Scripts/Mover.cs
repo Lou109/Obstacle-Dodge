@@ -9,11 +9,12 @@ public class Mover : MonoBehaviour
 
     CharacterController characterController;
     float ySpeed;
-
+    float originalStepOffset;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        originalStepOffset = characterController.stepOffset;
     }
   
     void Update()
@@ -32,11 +33,20 @@ public class Mover : MonoBehaviour
 
        ySpeed += Physics.gravity.y * Time.deltaTime;
 
-       if (Input.GetButtonDown("Jump"))
-       {
-           ySpeed = jumpSpeed;
-       }
+       if (characterController.isGrounded)
+       {    
+            characterController.stepOffset = originalStepOffset;
+            ySpeed = -0.5f;
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                ySpeed = jumpSpeed;
+            }
+       }
+       else
+       {
+            characterController.stepOffset = 0;
+       }
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
 
