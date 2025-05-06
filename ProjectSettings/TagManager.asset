@@ -7,6 +7,7 @@ TagManager:
   - Hit
   - Dropping Object
   - TriggerVolume
+  - Ground
   layers:
   - Default
   - TransparentFX

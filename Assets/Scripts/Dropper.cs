@@ -23,5 +23,14 @@ public class Dropper : MonoBehaviour
             myMeshRenderer.enabled = true;
             myRigidbody.useGravity = true;
          }
+         
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+           myRigidbody.isKinematic = true;
+        }
     }
 }

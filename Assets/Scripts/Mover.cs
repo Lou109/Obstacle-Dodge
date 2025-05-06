@@ -4,11 +4,14 @@ public class Mover : MonoBehaviour
 {
     
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float rotationSpeed;
+    [SerializeField] float rotationSpeed = 300f;
+
+    CharacterController characterController;
 
 
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         PrintInstruction();
     }
 
@@ -31,7 +34,10 @@ public class Mover : MonoBehaviour
        float verticalInput = Input.GetAxis("Vertical");
 
        Vector3 movementDirection = new Vector3(horizontalInput, 0 , verticalInput);
-       transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
+       float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;
+       movementDirection.Normalize();
+
+       characterController.SimpleMove(movementDirection * magnitude);
 
        if (movementDirection != Vector3.zero)
        {
