@@ -1098,8 +1098,8 @@ MonoBehaviour:
   jumph: 3
   jumpforce: 1.5
   runSpeed: 10
-  walkSpeed: 4
-  climbSpeed: 4
+  walkSpeed: 4.5
+  climbSpeed: 4.5
   currentState: 0
   moveSpeed: 4
   animator: {fileID: 1100576067}
