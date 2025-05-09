@@ -1,37 +1,47 @@
+using System;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
 public class Mover : MonoBehaviour
 {
+    [SerializeField] enum MovementState { Walking, Running };
 
-    [SerializeField] float speed;
     [SerializeField] float rotationSpeed;
     [SerializeField] float jumph;
     [SerializeField] float jumpforce;
     [SerializeField] float runSpeed;
     [SerializeField] float walkSpeed;
+    [SerializeField] float climbSpeed;
+
+    [SerializeField] MovementState currentState = MovementState.Walking;
+    [SerializeField] float moveSpeed;
 
     Vector3 jump;
     Rigidbody myRigidbody;
+     
+    Vector3 _targetPosition;
 
     bool isgrounded;
-    bool walking = true;
-    bool isRunning = false;
 
+    [SerializeField] private Animator animator;
+    
     void Start()
     {
         jump = new Vector3(0f, jumph, 0f);
         myRigidbody = GetComponent<Rigidbody>();
+        
        
     }
 
-    void Update()
+    void FixedUpdate()
     {
         MovePlayer();
         PlayerJump();
         PlayerRun();
-
+        
     void MovePlayer()
         {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -40,7 +50,7 @@ public class Mover : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+        transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
 
             if (movementDirection != Vector3.zero)
             {
@@ -48,8 +58,8 @@ public class Mover : MonoBehaviour
                 transform.rotation = Quaternion.RotateTowards
                 (transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    
             }
-            GetComponent<Animator>().SetFloat("Speed", speed);
-        }
+            GetComponent<Animator>().SetFloat("Speed", moveSpeed);
+    } 
     void PlayerJump()
         {
             if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
@@ -67,28 +77,18 @@ public class Mover : MonoBehaviour
 
     void PlayerRun()
     {
-            if (Input.GetKey(KeyCode.LeftShift)) 
-            {
-                if (!isRunning)
-            {
-                isRunning = true;
-                speed = runSpeed;
-            }
-                else {
-                
-                if (isRunning) 
-                {
-                    isRunning = false;
-                    speed = walkSpeed;
-                }
-            }
-        }   
-    }
-            
-}          
-         
-
-
+        if  (Input.GetKey(KeyCode.LeftShift) && currentState != MovementState.Running) 
+        {
+            currentState = MovementState.Running;
+            moveSpeed = runSpeed;    
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift) && currentState != MovementState.Walking) 
+        {
+            currentState = MovementState.Walking;
+            moveSpeed = walkSpeed;
+        }         
+    }    
+} 
     
 
     

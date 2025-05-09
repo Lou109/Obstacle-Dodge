@@ -4,11 +4,10 @@ public class AnimationController : MonoBehaviour
 {   
     [SerializeField] bool isRunning = false;
     Animator animator;
-    Mover mover;
- 
+    
     void Start()
     {
-        mover = GetComponent<Mover>();
+        
         animator = GetComponent<Animator>();
         if (animator == null)
         
@@ -29,18 +28,15 @@ public class AnimationController : MonoBehaviour
     {
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
 
-        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isMoving", isMoving); 
 
-        if (Input.GetKey(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            animator.SetBool("isRunning", isRunning);
-            
+        animator.SetBool("isRunning", true); 
         }
-        else
+        else if (!Input.GetKey(KeyCode.LeftShift))
         {
-            animator.SetBool("isMoving", isMoving);
-
+        animator.SetBool("isRunning", false);    
         }
-       
     }
 }
