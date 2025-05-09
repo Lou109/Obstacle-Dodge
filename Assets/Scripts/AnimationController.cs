@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public class AnimationController : MonoBehaviour
+{   
+    [SerializeField] bool isRunning = false;
+    Animator animator;
+    Mover mover;
+ 
+    void Start()
+    {
+        mover = GetComponent<Mover>();
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        
+        {
+           Debug.LogError("Animator component not found on this game object.");
+           enabled = false;
+           return;
+        }
+    }
+
+    void Update()
+    {
+        UpdateAnimationParameters();
+
+    }
+
+    private void UpdateAnimationParameters()
+    {
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+
+        animator.SetBool("isMoving", isMoving);
+
+        if (Input.GetKey(KeyCode.LeftShift)) 
+        {
+            animator.SetBool("isRunning", isRunning);
+            
+        }
+        else
+        {
+            animator.SetBool("isMoving", isMoving);
+
+        }
+       
+    }
+}
