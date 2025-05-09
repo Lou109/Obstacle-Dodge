@@ -22,12 +22,10 @@ public class Mover : MonoBehaviour
     Vector3 jump;
     Rigidbody myRigidbody;
      
-    Vector3 _targetPosition;
-
     bool isgrounded;
 
     [SerializeField] private Animator animator;
-    
+
     void Start()
     {
         jump = new Vector3(0f, jumph, 0f);
@@ -41,7 +39,7 @@ public class Mover : MonoBehaviour
         MovePlayer();
         PlayerJump();
         PlayerRun();
-        
+            
     void MovePlayer()
         {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -88,7 +86,8 @@ public class Mover : MonoBehaviour
             moveSpeed = walkSpeed;
         }         
     }    
-} 
+}
+
     
 
     
