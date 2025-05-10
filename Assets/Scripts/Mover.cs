@@ -29,12 +29,10 @@ public class Mover : MonoBehaviour
     void Start()
     {
         jump = new Vector3(0f, jumph, 0f);
-        myRigidbody = GetComponent<Rigidbody>();
-        
-       
+        myRigidbody = GetComponent<Rigidbody>();    
     }
 
-    void FixedUpdate()
+    void Update()
     {
         MovePlayer();
         PlayerJump();
