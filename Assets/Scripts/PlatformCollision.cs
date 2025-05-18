@@ -1,13 +1,12 @@
 using UnityEngine;
 
 public class PlatformCollision : MonoBehaviour
-{
-    [SerializeField] string playerTag = "Player";
+{  
     [SerializeField] Transform platform;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals(playerTag))
+        if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.transform.parent = platform;
         }
@@ -15,7 +14,7 @@ public class PlatformCollision : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag.Equals(playerTag))
+        if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.transform.parent = null;
         }
