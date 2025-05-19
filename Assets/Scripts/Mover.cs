@@ -37,26 +37,26 @@ public class Mover : MonoBehaviour
         MovePlayer();
         PlayerJump();
         PlayerRun();
-            
-    void MovePlayer()
+
+        void MovePlayer()
         {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        movementDirection.Normalize();
+            Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+            movementDirection.Normalize();
 
-        transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
 
             if (movementDirection != Vector3.zero)
             {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards
-                (transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    
+                (transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             }
             GetComponent<Animator>().SetFloat("Speed", moveSpeed);
-    } 
-    void PlayerJump()
+        }
+        void PlayerJump()
         {
             if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
             {
@@ -65,12 +65,13 @@ public class Mover : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision other) 
-            {
-                if(other.gameObject.tag == "Ground")
-                isgrounded = true;
-            }
-
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground")|| other.gameObject.CompareTag("Platform"))
+        {
+            isgrounded = true;
+        }
+    }
     void PlayerRun()
     {
         if  (Input.GetKey(KeyCode.LeftShift) && currentState != MovementState.Running) 

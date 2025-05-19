@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4320584352977399813}
   m_Layer: 0
   m_Name: PlatformParent
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 6365760244295589604}
   m_Layer: 0
   m_Name: Moving Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,5 +289,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3e1e16a877948d9ae366767b93f569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTag: Player
   platform: {fileID: 8054454526412234824}
