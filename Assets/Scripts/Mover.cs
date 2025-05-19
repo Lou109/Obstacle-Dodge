@@ -14,14 +14,12 @@ public class Mover : MonoBehaviour
     [SerializeField] float jumpforce;
     [SerializeField] float runSpeed;
     [SerializeField] float walkSpeed;
-    [SerializeField] float climbSpeed;
-
-    [SerializeField] MovementState currentState = MovementState.Walking;
     [SerializeField] float moveSpeed;
 
+    [SerializeField] MovementState currentState = MovementState.Walking;
+
     Vector3 jump;
-    Rigidbody myRigidbody;
-     
+    Rigidbody myRigidbody;  
     bool isgrounded;
 
     [SerializeField] private Animator animator;
